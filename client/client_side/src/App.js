@@ -1,13 +1,10 @@
-
-function App() {
+import AppRouter from "./components/AppRouter";
+import {BrowserRouter} from 'react-router-dom';
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
-    </div>
+    <BrowserRouter>
+      <AppRouter/>
+    </BrowserRouter>
   );
 }
 
