@@ -1,4 +1,8 @@
-export const authRoutes = []
+export const authRoutes = [
+    {
+        path:
+    }
+]
 
 
 
