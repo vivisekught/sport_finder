@@ -83,3 +83,15 @@ Training.belongsTo(Interest)
 
 Level.hasMany(Training)
 Training.belongsTo(Level)
+
+module.exports = {
+    User,
+    UserData,
+    ListOfInterests,
+    UserInterest,
+    Interest,
+    ListOfTrainings,
+    UserTraining,
+    Training,
+    Level
+}
