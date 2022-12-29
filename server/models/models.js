@@ -57,6 +57,12 @@ const Level = sequelize.define('level',{
     title: {type: DataTypes.STRING, unique: true},
 })
 
+const SportType = sequelize.define('sport_type',{
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    title: {type: DataTypes.STRING, unique: true},
+})
+
+
 User.hasOne(UserData)
 UserData.belongsTo(User)
 
@@ -93,5 +99,6 @@ module.exports = {
     ListOfTrainings,
     UserTraining,
     Training,
-    Level
+    Level,
+    SportType
 }
