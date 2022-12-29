@@ -1,7 +1,9 @@
 const Router = require('express')
 const router = new Router()
+const interestController = require('../controllers/interestController')
 
-router.post('/',)
-router.get('/',)
+
+router.post('/', interestController.create)
+router.get('/', interestController.getAll)
 
 module.exports = router
