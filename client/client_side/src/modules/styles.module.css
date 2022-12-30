@@ -1,5 +1,5 @@
 .navigation{
-    background-color: aqua;
+    background: #0B79DE;
 }
 
 .logo{
@@ -7,3 +7,8 @@
     text-decoration: none;
     font-size: 25px;
 }
+
+.button{
+    margin-left: 20px;
+}
+
