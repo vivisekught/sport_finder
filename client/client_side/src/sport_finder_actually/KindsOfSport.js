@@ -14,25 +14,32 @@ export default class KindsOfSport {
             {id : 9, name : "Легка атлетика"},
             {id : 10, name : "Важка атлетика"},
         ]
-        this._couches = [
+        this._coaches = [
             {id : 1, name : "Петров Іван Сергійович"},
             {id : 2, name : "Кононенко Володимир Степанович"},
             {id : 3, name : "Іванець Михайло Олександрович"},
         ]
 
-        this._selectedKinds = []
+        this._selectedKinds = {}
+
+        this._selectedCoach = {}
+
         makeAutoObservable(this)
     }
 
     setKinds(kinds){
         this._kinds = kinds
     }
-    setCouches(couches){
-        this._couches = couches
+    setCoaches(coaches){
+        this._coaches = coaches
     }
 
     setSelectedKind(selectedKind){
         this._selectedKinds = selectedKind
+    }
+
+    setSelectedCoach(selectedCoach){
+        this._selectedCoach = selectedCoach
     }
 
     get kinds(){
@@ -40,10 +47,14 @@ export default class KindsOfSport {
     }
 
     get coaches(){
-        return this._couches
+        return this._coaches
     }
 
     get selectedKinds(){
         return this._selectedKinds
+    }
+
+    get selectedCoach(){
+        return this._selectedCoach
     }
 }

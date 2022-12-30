@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, Col, Container, Row} from "react-bootstrap";
 import s from '../modules/styles.module.css';
 import SidebarTrainings from "./SidebarTrainings";
+import CouchesBar from "./CouchesBar";
 const SearchTraining = () => {
     return (
         <Container>
@@ -11,8 +12,13 @@ const SearchTraining = () => {
         </div>
             <div>
                 <Row className="mt-5">
-                <Col md = {3}><SidebarTrainings/></Col>
-                <Col md = {9}>yess</Col>
+                <Col md = {3}>
+                    <SidebarTrainings/>
+                </Col>
+
+                <Col md = {9}>
+                    <CouchesBar/>
+                </Col>
                 </Row>
             </div>
         </Container>
