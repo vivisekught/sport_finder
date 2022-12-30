@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Form, Card, Button, Row} from 'react-bootstrap'
+import {Container, Form, Card, Button} from 'react-bootstrap'
 import {LOGIN_ROUTE, REGISTRATION_ROUTE} from "../utils/consts";
 import {NavLink, useLocation} from "react-router-dom";
 const Auth = () => {
@@ -11,8 +11,15 @@ const Auth = () => {
             <Card style={{width: 600}} className="p-5">
                 <h2 className="m-auto">{ isLogin ? 'Авторизація' : 'Реєстрація'} </h2>
                 <Form className="d-flex flex-column">
-                    <Form.Control type="email" className="mt-3" placeholder="Введіть ваш email" />
-                    <Form.Control type="password" className="mt-3" placeholder="Введіть ваш пароль" />
+                    { isLogin ?
+                        <div><Form.Control type="email" className="mt-3" placeholder="Введіть ваш email" />
+                        <Form.Control type="password" className="mt-3" placeholder="Введіть ваш пароль" />
+                        </div> :
+                        <div><Form.Control type="email" className="mt-3" placeholder="Введіть ваш email" />
+                            <Form.Control type="password" className="mt-3" placeholder="Введіть ваш пароль" />
+                            <Form.Control type="password" className="mt-3" placeholder="Повторіть ваш пароль" />
+                        </div>
+                    }
                     <div className="d-flex justify-content-between mt-3">
                         {isLogin ? <div>
                                 Немає акаунту? <NavLink to = {REGISTRATION_ROUTE}>Реєструйся за посиланням</NavLink>

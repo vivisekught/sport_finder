@@ -1,9 +1,10 @@
 import React from 'react';
+import SearchTraining from "../components/SearchTraining";
 
 const Main = () => {
     return (
         <div>
-            <p>Main</p>
+            <SearchTraining/>
         </div>
     );
 };
