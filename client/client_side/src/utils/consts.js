@@ -6,3 +6,6 @@ export const MAIN_ROUTE = '/main'
 
 export const QUESTIONARY_ROUTE = '/questionary'
 
+
+export const FULLTRAINING_ROUTE = '/fulltraining'
+

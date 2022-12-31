@@ -1,11 +1,17 @@
-import {LOGIN_ROUTE, MAIN_ROUTE, REGISTRATION_ROUTE} from "./utils/consts";
+import {FULLTRAINING_ROUTE, LOGIN_ROUTE, MAIN_ROUTE, REGISTRATION_ROUTE} from "./utils/consts";
 import Auth from "./pages/Auth";
 import Main from "./pages/Main";
+import FullTraining from "./pages/FullTraining";
 
 export const authRoutes = [
     {
         path: MAIN_ROUTE,
         Component: Main
+    },
+
+    {
+        path: FULLTRAINING_ROUTE,
+        Component: FullTraining
     }
 ]
 
