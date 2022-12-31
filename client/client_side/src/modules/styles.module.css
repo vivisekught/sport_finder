@@ -25,3 +25,12 @@
 }
 
 
+/*styles for card in TrainingItem*/
+
+.training{
+    width:100%;
+    height: 300px;
+    margin: 20px 0;
+}
+
+
