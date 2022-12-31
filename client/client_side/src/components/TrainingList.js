@@ -7,12 +7,12 @@ import {Context} from "../index";
 const TrainingList = observer(() => {
     const {training} = useContext(Context)
     return (
-        <Row className="d-flex">
+        <div>
             {training.kinds.map(kind =>
                 <TrainingItem key={kind.id} kind={kind}/>
             )}
 
-        </Row>
+        </div>
     );
 });
 

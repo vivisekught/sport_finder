@@ -3,16 +3,16 @@ import {makeAutoObservable} from "mobx";
 export default class KindsOfSport {
     constructor() {
         this._kinds = [
-            {id : 1, name : "Бокс"},
-            {id : 2, name : "Футбол"},
-            {id : 3, name : "Баскетбол"},
-            {id : 4, name : "Волейбол"},
-            {id : 5, name : "Карате"},
-            {id : 6, name : "Самбо"},
-            {id : 7, name : "Шахи"},
-            {id : 8, name : "Плавання"},
-            {id : 9, name : "Легка атлетика"},
-            {id : 10, name : "Важка атлетика"},
+            {id : 1, name : "Бокс", coach : "Петров Іван Сергійович", img : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6y27EXRje6ceZpsJlNxzy2qZ5sjltVfSnwSYjqq4iq15fzs_LCqJW_cH99CAi-vnn42U&usqp=CAU", desc : "Відпрацювання стійки ударів. Самооборона. Спаринги" },
+            {id : 2, name : "Футбол", coach : "Івасик Генадій Степанович" , img : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6y27EXRje6ceZpsJlNxzy2qZ5sjltVfSnwSYjqq4iq15fzs_LCqJW_cH99CAi-vnn42U&usqp=CAU", desc : "Відпрацювання стійки ударів. Самооборона. Спаринги"},
+            {id : 3, name : "Баскетбол", coach : "Мурмяу Чижик Степанович" , img : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6y27EXRje6ceZpsJlNxzy2qZ5sjltVfSnwSYjqq4iq15fzs_LCqJW_cH99CAi-vnn42U&usqp=CAU", desc : "Відпрацювання стійки ударів. Самооборона. Спаринги"},
+            {id : 4, name : "Волейбол", coach : "Крокодайл Олексій Степанович" , img : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6y27EXRje6ceZpsJlNxzy2qZ5sjltVfSnwSYjqq4iq15fzs_LCqJW_cH99CAi-vnn42U&usqp=CAU", desc : "Відпрацювання стійки ударів. Самооборона. Спаринги"},
+            {id : 5, name : "Карате", coach : "Красивий Мирослав Степанович" , img : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6y27EXRje6ceZpsJlNxzy2qZ5sjltVfSnwSYjqq4iq15fzs_LCqJW_cH99CAi-vnn42U&usqp=CAU", desc : "Відпрацювання стійки ударів. Самооборона. Спаринги"},
+            {id : 6, name : "Самбо", coach : "Чіткий Панас Степанович" , img : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6y27EXRje6ceZpsJlNxzy2qZ5sjltVfSnwSYjqq4iq15fzs_LCqJW_cH99CAi-vnn42U&usqp=CAU", desc : "Відпрацювання стійки ударів. Самооборона. Спаринги"},
+            {id : 7, name : "Шахи", coach : "Гармонія Іржик Степанович" , img : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6y27EXRje6ceZpsJlNxzy2qZ5sjltVfSnwSYjqq4iq15fzs_LCqJW_cH99CAi-vnn42U&usqp=CAU", desc : "Відпрацювання стійки ударів. Самооборона. Спаринги"},
+            {id : 8, name : "Плавання", coach : "Небен Костянтин Степанович" , img : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6y27EXRje6ceZpsJlNxzy2qZ5sjltVfSnwSYjqq4iq15fzs_LCqJW_cH99CAi-vnn42U&usqp=CAU", desc : "Відпрацювання стійки ударів. Самооборона. Спаринги"},
+            {id : 9, name : "Легка атлетика", coach : "Щецин Дмитро Степанович" , img : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6y27EXRje6ceZpsJlNxzy2qZ5sjltVfSnwSYjqq4iq15fzs_LCqJW_cH99CAi-vnn42U&usqp=CAU", desc : "Відпрацювання стійки ударів. Самооборона. Спаринги"},
+            {id : 10, name : "Важка атлетика", coach : "Норов Олексій Степанович" , img : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6y27EXRje6ceZpsJlNxzy2qZ5sjltVfSnwSYjqq4iq15fzs_LCqJW_cH99CAi-vnn42U&usqp=CAU", desc : "Відпрацювання стійки ударів. Самооборона. Спаринги"},
         ]
         this._coaches = [
             {id : 1, name : "Петров Іван Сергійович"},
