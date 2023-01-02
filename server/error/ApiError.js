@@ -1,4 +1,4 @@
-const constant = require("../utils/Constants")
+const errorsCode = require("../utils/Constants")
 
 class ApiError extends Error {
     constructor(status, message) {
@@ -8,15 +8,18 @@ class ApiError extends Error {
     }
 
     static notFound(message) {
-        return new ApiError(constant.not_found_error, message)
+        return new ApiError(errorsCode.not_found, message)
     }
 
     static forbidden(message) {
-        return new ApiError(constant.forbidden_error, message)
+        return new ApiError(errorsCode.forbidden, message)
     }
 
     static internal(message) {
-        return new ApiError(constant.internal_error, message)
+        return new ApiError(errorsCode.internal, message)
+    }
+    static unauthorized(message) {
+        return new ApiError(errorsCode.unauthorized, message)
     }
 }
 

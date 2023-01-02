@@ -1,19 +1,18 @@
-const FORBIDDEN_ERROR = 403;
-const NOT_FOUND_ERROR = 404;
-const INTERNAL_ERROR = 500;
-
-class Constant {
-    static get forbidden_error() {
-        return FORBIDDEN_ERROR;
+class ErrorsCode {
+    static get unauthorized() {
+        return 401;
+    }
+    static get forbidden() {
+        return 403;
     }
 
-    static get not_found_error() {
-        return NOT_FOUND_ERROR;
+    static get not_found() {
+        return 404;
     }
 
-    static get internal_error() {
-        return INTERNAL_ERROR;
+    static get internal() {
+        return 500;
     }
 }
 
-module.exports = Constant
+module.exports = ErrorsCode

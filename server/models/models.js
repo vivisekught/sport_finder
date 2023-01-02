@@ -21,7 +21,7 @@ const UserData = sequelize.define('user_data', {
     height: {type: DataTypes.INTEGER, allowNull: false},
 })
 
-const ListOfInterests = sequelize.define('list_of_interests', {
+const InterestList = sequelize.define('interest_list', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 })
 
@@ -34,7 +34,7 @@ const Interest = sequelize.define('interest', {
     title: {type: DataTypes.STRING}
 })
 
-const ListOfTrainings = sequelize.define('list_of_trainings', {
+const TrainingsList = sequelize.define('trainings_list', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 })
 
@@ -67,20 +67,20 @@ const SportType = sequelize.define('sport_type', {
 User.hasOne(UserData)
 UserData.belongsTo(User)
 
-User.hasOne(ListOfInterests)
-ListOfInterests.belongsTo(User)
+User.hasOne(InterestList)
+InterestList.belongsTo(User)
 
-ListOfInterests.hasMany(UserInterest)
-UserInterest.belongsTo(ListOfInterests)
+InterestList.hasMany(UserInterest)
+UserInterest.belongsTo(InterestList)
 
 Interest.hasMany(UserInterest)
 UserInterest.belongsTo(Interest)
 
-User.hasOne(ListOfTrainings)
-ListOfTrainings.belongsTo(User)
+User.hasOne(TrainingsList)
+TrainingsList.belongsTo(User)
 
-ListOfInterests.hasMany(UserTraining)
-UserTraining.belongsTo(ListOfTrainings)
+TrainingsList.hasMany(UserTraining)
+UserTraining.belongsTo(TrainingsList)
 
 Training.hasMany(UserTraining)
 UserTraining.belongsTo(Training)
@@ -94,10 +94,10 @@ Training.belongsTo(Level)
 module.exports = {
     User,
     UserData,
-    ListOfInterests,
+    InterestList,
     UserInterest,
     Interest,
-    ListOfTrainings,
+    TrainingsList,
     UserTraining,
     Training,
     Level,
