@@ -25,3 +25,21 @@
 }
 
 
+/*styles for card in TrainingItem*/
+
+.training{
+    width:100%;
+    height: 400px;
+    margin: 20px 0;
+    padding:10px;
+    background: #91ccff;
+    font-size: 20px;
+}
+
+.image_training{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
