@@ -22,6 +22,7 @@ const NavBar = observer( () => {
                 <NavLink className={s.logo} to ={MAIN_ROUTE}>SPORT_FINDER</NavLink>
                 {user.isAuth ? <Nav className="ml-auto" style={{maxHeight: '100px'}} navbarScroll>
                                      <Button variant={"outline-dark"}>Профіль</Button>
+                                    {/*fdfdf*/}
                                     <Button variant={"outline-dark"} className={s.button}>Вийти</Button>
                                  </Nav>
                                  : <Nav className="ml-auto"  style={{maxHeight: '100px'}} navbarScroll>
