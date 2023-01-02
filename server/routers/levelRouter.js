@@ -4,6 +4,6 @@ const levelController = require('../controllers/levelController')
 
 
 router.post('/', levelController.create)
-router.get('/',levelController.getAll)
+router.get('/', levelController.getAll)
 
 module.exports = router

@@ -5,6 +5,6 @@ const trainingController = require('../controllers/trainingController')
 
 router.post('/', trainingController.create)
 router.get('/', trainingController.getAll)
-router.get('/:id',)
+router.get('/:id', trainingController.getOne)
 
 module.exports = router
