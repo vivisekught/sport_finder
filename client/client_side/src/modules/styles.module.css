@@ -1,0 +1,27 @@
+.navigation{
+    background: #0B79DE;
+}
+
+.logo{
+    color: black;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+.button{
+    margin-left: 20px;
+}
+
+/*SearchTraining styles*/
+
+.button_plus{
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+.inputCode{
+    font-size: 18px;
+    border-color: black;
+}
+
+
