@@ -16,9 +16,22 @@ export default class User {
             phoneNumber : " ",
             FavouriteSport : " ",
         }
+
+        this._attendedKind = {
+            name : "",
+            attended : false,
+        }
         makeAutoObservable(this)
     }
 
+    setUserAttendedKind(nameSport, attended){
+        this._attendedKind.name = nameSport
+        this._attendedKind.attended = attended
+    }
+
+    getUserAttendedKind(field){
+        return this._attendedKind[field]
+    }
     setIsAuth(bool){
         this._isAuth = bool
     }

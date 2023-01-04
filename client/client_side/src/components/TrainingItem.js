@@ -8,7 +8,7 @@ const TrainingItem = ({kind}) => {
     const navigate = useNavigate() // use this hook to get to the needed page
     return (
         <Col md={12}>
-            <Card className={s.training} border={"dark"} onClick={() => navigate(FULLTRAINING_ROUTE + '/', {state: {id:kind.id,name:kind.name, desc:kind.desc, coach: kind.coach, sportClub: kind.sportClub}})}>
+            <Card className={s.training} border={"dark"} onClick={() => navigate(FULLTRAINING_ROUTE + '/', {state: {id:kind.id,name:kind.name, desc:kind.desc, coach: kind.coach, sportClub: kind.sportClub, img: kind.img, time: kind.time}})}>
                 <Row className="d-flex mb-1">
                 <Col md={4}>{kind.sportClub}</Col>
                 <Col md={4} className='mb-3'>22.10.2022 16:00-18:00</Col>
