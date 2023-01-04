@@ -24,10 +24,14 @@ const NavBar = observer( () => {
                 <NavLink className={s.logo} to ={MAIN_ROUTE}>SPORT_FINDER</NavLink>
                 {user.isAuth ? <Nav className="ml-auto" style={{maxHeight: '100px'}} navbarScroll>
                                      <Button variant={"outline-dark"}>Профіль</Button>
-                                    <Button variant={"outline-dark"} onClick={() => navigate(LOGIN_ROUTE)} className={s.button}>Вийти</Button>
+                                    <Button variant={"outline-dark"} onClick={() => {
+                                        navigate(LOGIN_ROUTE)
+                                        user.setIsAuth(false)}} className={s.button}>Вийти</Button>
                                  </Nav>
                                  : <Nav className="ml-auto"  style={{maxHeight: '100px'}} navbarScroll>
-                                    <Button variant={"outline-dark"}  onClick={() => user.setIsAuth(true)}>Авторизація</Button>
+                                    <Button variant={"outline-dark"}  onClick={() => {
+                                        navigate(LOGIN_ROUTE)
+                                    }}>Авторизація</Button>
                                  </Nav>
                 }
             </Container>

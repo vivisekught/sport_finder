@@ -5,6 +5,7 @@ export const REGISTRATION_ROUTE = '/registration'
 export const MAIN_ROUTE = '/main'
 
 export const QUESTIONARY_ROUTE = '/questionary'
+export const QUESTIONARY_ROUTE_SECOND = '/questionary/secondpage'
 
 
 export const FULLTRAINING_ROUTE = '/fulltraining'
