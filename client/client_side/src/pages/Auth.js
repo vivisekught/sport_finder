@@ -1,26 +1,41 @@
-import React, {useState} from 'react';
+import React, {useContext,useState} from 'react';
 import {Container, Form, Card, Button} from 'react-bootstrap'
-import {LOGIN_ROUTE, REGISTRATION_ROUTE} from "../utils/consts";
+import {LOGIN_ROUTE, MAIN_ROUTE, QUESTIONARY_ROUTE, REGISTRATION_ROUTE} from "../utils/consts";
 import {NavLink, useLocation} from "react-router-dom";
 import {login, registration} from "../http/userAPI";
-const Auth = () => {
+import {useNavigate} from "react-router-dom";
+import {Context} from "../index";
+import {observer} from "mobx-react-lite";
+
+const Auth = observer(() => {
+    const {user} = useContext(Context)
     const location = useLocation()
+    const navigate = useNavigate()
     const isLogin = location.pathname === LOGIN_ROUTE
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    // console.log(isLogin + " isLogin")
 
     const click = async () => {
-        if(isLogin){
-            const response = await login()
+        try {
+            let data
+            if (isLogin) {
+                 data = await login(email, password)
+
+                user.setIsAuth(true)
+                navigate(MAIN_ROUTE)
+
+            } else {
+                 data = await registration(email, password)
+                navigate(QUESTIONARY_ROUTE)
+            }
+            user.setUser(user)
 
         }
-        else{
-            const response = await registration(email, password)
-            console.log(response)
+        catch (e) {
+            alert(e.response.data.message)
         }
-
-
     }
     return (
         <Container className="d-flex justify-content-center align-items-center" style={{height: window.innerHeight -54}}>
@@ -37,8 +52,8 @@ const Auth = () => {
                         value={password} onChange={e => setPassword(e.target.value)} typeof={password}
                         />
                         </div> :
-                        <div><Form.Control type="email" className="mt-3" placeholder="Введіть ваш email" />
-                            <Form.Control type="password" className="mt-3" placeholder="Введіть ваш пароль" />
+                        <div><Form.Control type="email" className="mt-3" placeholder="Введіть ваш email" onChange={e => setEmail(e.target.value)}/>
+                            <Form.Control type="password" className="mt-3" placeholder="Введіть ваш пароль" onChange={e => setPassword(e.target.value)} />
                         </div>
                     }
                     <div className="d-flex justify-content-between mt-3">
@@ -55,6 +70,6 @@ const Auth = () => {
             </Card>
         </Container>
     );
-};
+});
 
 export default Auth;
