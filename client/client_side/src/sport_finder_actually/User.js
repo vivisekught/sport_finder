@@ -46,6 +46,10 @@ export default class User {
         return this._user_porfolio
     }
 
+    getUserPorfolioField(field){
+        return this._user_porfolio[field]
+    }
+
     get isAuth(){
         return this._isAuth
     }

@@ -1,7 +1,7 @@
 import {
     FULLTRAINING_ROUTE,
     LOGIN_ROUTE,
-    MAIN_ROUTE,
+    MAIN_ROUTE, PROFILE_ROUTE,
     QUESTIONARY_ROUTE,
     QUESTIONARY_ROUTE_SECOND,
     REGISTRATION_ROUTE
@@ -12,6 +12,7 @@ import FullTraining from "./pages/FullTraining";
 import Questionary from "./pages/Questionary";
 import QuestionarySecond from "./pages/Questionary_second";
 import Questionary_second from "./pages/Questionary_second";
+import Profile from "./pages/Profile";
 
 export const authRoutes = [
 
@@ -47,7 +48,12 @@ export const publicRoutes = [
     {
         path: QUESTIONARY_ROUTE_SECOND,
         Component: Questionary_second
-    }
+    },
+
+    {
+        path: PROFILE_ROUTE,
+        Component: Profile
+    },
 
 ]
 

@@ -2,6 +2,8 @@ import React, {useContext, useReducer, useState} from 'react';
 import {Context} from "../index";
 import {Button, Col, Container, Form, ListGroup, ListGroupItem, Row} from "react-bootstrap";
 import s from "../modules/styles.module.css";
+import {useNavigate} from "react-router-dom";
+import {PROFILE_ROUTE} from "../utils/consts";
 const QuestionarySecond = () => {
     const {user} = useContext(Context)
     const [ignored, forceUpdate] = useReducer(x => x + 1, 0) //rerender the component
@@ -16,6 +18,8 @@ const QuestionarySecond = () => {
     const [height, setHeight] = useState("")
     const [PhoneNumber, setPhoneNumber] = useState("")
     const [FavouriteSport, setFavouriteSport] = useState("")
+
+    const navigate = useNavigate()
 
     const {training} = useContext(Context)
     return (
@@ -50,6 +54,9 @@ const QuestionarySecond = () => {
                                                                                     onClick={() =>{
                                                                                         updateUserData()
                                                                                         console.log(user.getUserPortfolio())
+                                                                                        user.setIsAuth(true)
+                                                                                        navigate(PROFILE_ROUTE)
+                                                                                        forceUpdate()
                                                                                     }}>Продовжити</Button></Col>
             </Row>
 
