@@ -34,6 +34,11 @@
     padding:10px;
     background: #91ccff;
     font-size: 20px;
+    cursor: pointer;
+}
+
+.training:hover{
+    background: #43a2f8;
 }
 
 .image_training{
@@ -52,5 +57,14 @@
 .input_size{
     width: 400px;
 }
+
+/*full training styles*/
+
+.big_image{
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+}
+
 
 

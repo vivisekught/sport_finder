@@ -7,7 +7,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
 import {NavLink} from "react-router-dom";
-import {LOGIN_ROUTE, MAIN_ROUTE} from "../utils/consts";
+import {LOGIN_ROUTE, MAIN_ROUTE, PROFILE_ROUTE} from "../utils/consts";
 import s from "../modules/styles.module.css"
 import {Button} from "react-bootstrap";
 import {observer} from "mobx-react-lite";
@@ -23,7 +23,7 @@ const NavBar = observer( () => {
             <Container>
                 <NavLink className={s.logo} to ={MAIN_ROUTE}>SPORT_FINDER</NavLink>
                 {user.isAuth ? <Nav className="ml-auto" style={{maxHeight: '100px'}} navbarScroll>
-                                     <Button variant={"outline-dark"}>Профіль</Button>
+                                     <Button variant={"outline-dark"} onClick={() => navigate(PROFILE_ROUTE)}>Профіль</Button>
                                     <Button variant={"outline-dark"} onClick={() => {
                                         navigate(LOGIN_ROUTE)
                                         user.setIsAuth(false)}} className={s.button}>Вийти</Button>
