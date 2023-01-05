@@ -5,20 +5,25 @@ const User = sequelize.define('user', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     email: {type: DataTypes.STRING, unique: true, allowNull: false},
     password: {type: DataTypes.STRING, allowNull: false},
-    role: {type: DataTypes.STRING, defaultValue: "STUDENT"} // exists STUDENT user, and COACH user
+
 })
 
-const UserData = sequelize.define('user_data', {
+const UserPrimaryData = sequelize.define('user_primary_data', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, defaultValue: "User"},
+    country: {type: DataTypes.STRING, allowNull: false},
+    city: {type: DataTypes.STRING, allowNull: false},
+    role: {type: DataTypes.STRING, defaultValue: "STUDENT"}, // exists STUDENT user, and COACH user
+})
+
+const UserAdditionalData = sequelize.define('user_additional_data', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     data_of_birthday: {type: DataTypes.DATE},
-    country: {type: DataTypes.STRING},
-    city: {type: DataTypes.STRING},
     phone_number: {type: DataTypes.STRING},
     photo: {type: DataTypes.STRING},
-    gender: {type: DataTypes.STRING, allowNull: false},
-    weight: {type: DataTypes.INTEGER, allowNull: false},
-    height: {type: DataTypes.INTEGER, allowNull: false},
+    gender: {type: DataTypes.STRING},
+    weight: {type: DataTypes.INTEGER},
+    height: {type: DataTypes.INTEGER},
 })
 
 const InterestList = sequelize.define('interest_list', {
@@ -64,8 +69,11 @@ const SportType = sequelize.define('sport_type', {
 })
 
 
-User.hasOne(UserData)
-UserData.belongsTo(User)
+User.hasOne(UserPrimaryData)
+UserPrimaryData.belongsTo(User)
+
+User.hasOne(UserAdditionalData)
+UserAdditionalData.belongsTo(User)
 
 User.hasOne(InterestList)
 InterestList.belongsTo(User)
@@ -93,7 +101,8 @@ Training.belongsTo(Level)
 
 module.exports = {
     User,
-    UserData,
+    UserPrimaryData,
+    UserAdditionalData,
     InterestList,
     UserInterest,
     Interest,
