@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "../node_modules/.bin/nodemon index.js"
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "Mykyta Malii IO-03",
@@ -19,6 +19,7 @@
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.27.0",
+    "uniqid": "^5.4.0",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
