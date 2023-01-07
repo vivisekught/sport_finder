@@ -3,7 +3,7 @@ const router = new Router()
 
 const userRouter = require('./userRouter')
 const user_primary_dataRouter = require('./user_primary_dataRouter')
-const user_additional_dataRouter = require('./user_primary_dataRouter')
+const user_additional_dataRouter = require('./user_additional_dataRouter')
 const interestRouter = require('./interestRouter')
 const trainingRouter = require('./trainingRouter')
 const levelRouter = require('./levelRouter')

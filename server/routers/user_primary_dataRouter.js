@@ -4,6 +4,7 @@ const user_primary_dataController = require('../controllers/user_primary_dataCon
 
 
 router.post('/', user_primary_dataController.create)
-router.get('/', user_primary_dataController.getOne)
+router.get('/:userId', user_primary_dataController.getOne)
+router.put('/:userId', user_primary_dataController.update)
 
 module.exports = router

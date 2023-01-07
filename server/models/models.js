@@ -5,7 +5,7 @@ const User = sequelize.define('user', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     email: {type: DataTypes.STRING, unique: true, allowNull: false},
     password: {type: DataTypes.STRING, allowNull: false},
-
+    role: {type: DataTypes.STRING, defaultValue: "STUDENT"}, // exists STUDENT user, and COACH user
 })
 
 const UserPrimaryData = sequelize.define('user_primary_data', {
@@ -13,7 +13,7 @@ const UserPrimaryData = sequelize.define('user_primary_data', {
     name: {type: DataTypes.STRING, defaultValue: "User"},
     country: {type: DataTypes.STRING, allowNull: false},
     city: {type: DataTypes.STRING, allowNull: false},
-    role: {type: DataTypes.STRING, defaultValue: "STUDENT"}, // exists STUDENT user, and COACH user
+
 })
 
 const UserAdditionalData = sequelize.define('user_additional_data', {
@@ -55,6 +55,7 @@ const Training = sequelize.define('training', {
     days: {type: DataTypes.STRING, allowNull: false},
     time: {type: DataTypes.TIME, allowNull: false},
     duration: {type: DataTypes.STRING, allowNull: false},
+    code: {type: DataTypes.STRING, unique: true, allowNull: false},
     photo: {type: DataTypes.STRING}
 })
 

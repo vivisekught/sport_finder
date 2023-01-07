@@ -1,5 +1,6 @@
 const {Training} = require("../models/models");
 const uuid = require('uuid')
+const uniqid = require('uniqid')
 const path = require('path')
 const ApiError = require('../error/ApiError')
 
@@ -11,6 +12,9 @@ class TrainingController {
             let filename = uuid.v4() + ".jpg"
             await photo.mv(path.resolve(__dirname, "..", "static", filename))
 
+            let unique_code = uniqid.time()
+            console.log(unique_code)
+
             const training = await Training.create({
                 title,
                 description,
@@ -20,6 +24,7 @@ class TrainingController {
                 duration,
                 levelId,
                 interestId,
+                code: unique_code,
                 photo: filename
             })
             return res.json(training)
@@ -55,13 +60,45 @@ class TrainingController {
 
     async getOne(req, res, next) {
         try {
-            const {id} = req.params // in trainingRouter we specify parameter `id`
-            const training = await Training.findOne(
-                {
-                    where: {id},
-                }
-            )
+            const {code} = req.params
+                const training = await Training.findOne(
+                    {
+                        where: {code},
+                    }
+                )
             res.json(training)
+        } catch (e) {
+            next(ApiError.notFound(e.message))
+        }
+    }
+
+    async update(req, res, next) {
+        try {
+            const params = req.params
+            const body = req.body
+            const {photo} = req.files
+
+            if (photo){
+                let filename = uuid.v4() + ".jpg"
+                await photo.mv(path.resolve(__dirname, "..", "static", filename))
+                body.photo = filename
+            }
+
+            const training = await Training.update(body, {where: params})
+            return res.json(training)
+        } catch (e) {
+            next(ApiError.notFound(e.message))
+        }
+    }
+
+    async delete(req, res, next) {
+        try {
+            const {code} = req.params
+            const training = await Training.destroy(
+                {
+                where: {code}
+                })
+            return res.json(training)
         } catch (e) {
             next(ApiError.notFound(e.message))
         }
