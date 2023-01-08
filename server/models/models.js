@@ -11,19 +11,14 @@ const User = sequelize.define('user', {
 const UserData = sequelize.define('user_data', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, defaultValue: "User"},
-    country: {type: DataTypes.STRING, allowNull: false},
-    city: {type: DataTypes.STRING, allowNull: false},
+    country: {type: DataTypes.STRING},
+    city: {type: DataTypes.STRING},
     data_of_birthday: {type: DataTypes.DATE},
     phone_number: {type: DataTypes.STRING},
     photo: {type: DataTypes.STRING},
     gender: {type: DataTypes.STRING},
     weight: {type: DataTypes.INTEGER},
     height: {type: DataTypes.INTEGER},
-})
-
-
-const InterestList = sequelize.define('interest_list', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 })
 
 const UserInterest = sequelize.define('user_interest', {
@@ -64,11 +59,8 @@ const SportType = sequelize.define('sport_type', {
 User.hasOne(UserData)
 UserData.belongsTo(User)
 
-User.hasOne(InterestList)
-InterestList.belongsTo(User)
-
-InterestList.hasMany(UserInterest)
-UserInterest.belongsTo(InterestList)
+User.hasMany(UserInterest)
+UserInterest.belongsTo(User)
 
 Interest.hasMany(UserInterest)
 UserInterest.belongsTo(Interest)
@@ -88,7 +80,6 @@ Training.belongsTo(Level)
 module.exports = {
     User,
     UserData,
-    InterestList,
     UserInterest,
     Interest,
     UserTraining,

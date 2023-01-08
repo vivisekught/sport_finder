@@ -6,23 +6,25 @@ const path = require("path");
 class User_dataController {
     async create(req, res, next) {
         try {
-            const {name, country, city, data_of_birthday, phone_number, gender, weight, height, userId} = req.body
-            const {photo} = req.files
-            let filename = uuid.v4() + ".jpg"
-            await photo.mv(path.resolve(__dirname, "..", "static", filename))
+            const body = req.body
+            console.log(req.body)
 
-            const user_data = await UserData.create({
-                name,
-                country,
-                city,
-                data_of_birthday,
-                phone_number,
-                gender,
-                weight,
-                height,
-                userId,
-                photo: filename
-            })
+            if (req.files) {
+                const {photo} = req.files
+                let filename = uuid.v4() + ".jpg"
+                await photo.mv(path.resolve(__dirname, "..", "static", filename))
+                body.photo = filename
+            }
+
+            const checking = await UserData.findOne({where: {userId: body.userId}})
+
+            console.log(checking)
+
+            if(checking){
+                return next(ApiError.notFound(`Data for this user ${body.userId} already exists`))
+            }
+
+            const user_data = await UserData.create(body)
             return res.json(user_data)
         } catch (e) {
             next(ApiError.notFound(e.message))
@@ -47,9 +49,9 @@ class User_dataController {
         try {
             const params = req.params
             const body = req.body
-            const {photo} = req.files
 
-            if (photo) {
+           if (req.files) {
+                const {photo} = req.files
                 let filename = uuid.v4() + ".jpg"
                 await photo.mv(path.resolve(__dirname, "..", "static", filename))
                 body.photo = filename

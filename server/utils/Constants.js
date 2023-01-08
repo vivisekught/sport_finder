@@ -2,6 +2,7 @@ class ErrorsCode {
     static get unauthorized() {
         return 401;
     }
+
     static get forbidden() {
         return 403;
     }

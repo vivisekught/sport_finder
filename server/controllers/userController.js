@@ -2,7 +2,7 @@ const ApiError = require('../error/ApiError')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-const {User, InterestList, UserData} = require('../models/models')
+const {User, UserData, UserInterest, UserTraining} = require('../models/models')
 
 const generateJwt = (id, email, role) => {
     return jwt.sign(
@@ -31,7 +31,6 @@ class UserController {
 
             const hashPassword = await bcrypt.hash(password, 4) // hash user password 4 times
             const user = await User.create({email, role, password: hashPassword})
-            await InterestList.create({userId: user.id})
 
             const token = generateJwt(user.id, user.email, user.role)
             return res.json({token})
@@ -97,10 +96,11 @@ class UserController {
         try {
             const {id} = req.params
 
-            console.log(id)
-
-            await InterestList.destroy({where: {userId: id}})
             await UserData.destroy({where: {userId: id}})
+
+            //delete user interests and trainings
+            await UserInterest.destroy({where: {userId: id}})
+            await UserTraining.destroy({where: {userId: id}})
 
             const user = await User.destroy(
                 {
