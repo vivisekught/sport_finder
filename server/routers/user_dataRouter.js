@@ -1,6 +1,6 @@
 const Router = require('express')
 const router = new Router()
-const user_additional_dataController = require('../controllers/user_additional_dataController')
+const user_additional_dataController = require('../controllers/user_dataController')
 
 
 router.post('/', user_additional_dataController.create)

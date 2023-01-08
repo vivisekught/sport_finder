@@ -8,16 +8,11 @@ const User = sequelize.define('user', {
     role: {type: DataTypes.STRING, defaultValue: "STUDENT"}, // exists STUDENT user, and COACH user
 })
 
-const UserPrimaryData = sequelize.define('user_primary_data', {
+const UserData = sequelize.define('user_data', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, defaultValue: "User"},
     country: {type: DataTypes.STRING, allowNull: false},
     city: {type: DataTypes.STRING, allowNull: false},
-
-})
-
-const UserAdditionalData = sequelize.define('user_additional_data', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     data_of_birthday: {type: DataTypes.DATE},
     phone_number: {type: DataTypes.STRING},
     photo: {type: DataTypes.STRING},
@@ -25,6 +20,7 @@ const UserAdditionalData = sequelize.define('user_additional_data', {
     weight: {type: DataTypes.INTEGER},
     height: {type: DataTypes.INTEGER},
 })
+
 
 const InterestList = sequelize.define('interest_list', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
@@ -39,10 +35,6 @@ const Interest = sequelize.define('interest', {
     title: {type: DataTypes.STRING}
 })
 
-const TrainingsList = sequelize.define('trainings_list', {
-    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-})
-
 const UserTraining = sequelize.define('user_training', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 })
@@ -55,6 +47,7 @@ const Training = sequelize.define('training', {
     days: {type: DataTypes.STRING, allowNull: false},
     time: {type: DataTypes.TIME, allowNull: false},
     duration: {type: DataTypes.STRING, allowNull: false},
+    coach: {type: DataTypes.INTEGER, allowNull: false},
     code: {type: DataTypes.STRING, unique: true, allowNull: false},
     photo: {type: DataTypes.STRING}
 })
@@ -68,13 +61,8 @@ const SportType = sequelize.define('sport_type', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     title: {type: DataTypes.STRING, unique: true},
 })
-
-
-User.hasOne(UserPrimaryData)
-UserPrimaryData.belongsTo(User)
-
-User.hasOne(UserAdditionalData)
-UserAdditionalData.belongsTo(User)
+User.hasOne(UserData)
+UserData.belongsTo(User)
 
 User.hasOne(InterestList)
 InterestList.belongsTo(User)
@@ -85,11 +73,8 @@ UserInterest.belongsTo(InterestList)
 Interest.hasMany(UserInterest)
 UserInterest.belongsTo(Interest)
 
-User.hasOne(TrainingsList)
-TrainingsList.belongsTo(User)
-
-TrainingsList.hasMany(UserTraining)
-UserTraining.belongsTo(TrainingsList)
+User.hasMany(UserTraining)
+UserTraining.belongsTo(User)
 
 Training.hasMany(UserTraining)
 UserTraining.belongsTo(Training)
@@ -102,12 +87,10 @@ Training.belongsTo(Level)
 
 module.exports = {
     User,
-    UserPrimaryData,
-    UserAdditionalData,
+    UserData,
     InterestList,
     UserInterest,
     Interest,
-    TrainingsList,
     UserTraining,
     Training,
     Level,

@@ -27,6 +27,7 @@ class LevelController {
             next(ApiError.notFound(e.message))
         }
     }
+
     async delete(req, res, next) {
         try {
             const {id} = req.params

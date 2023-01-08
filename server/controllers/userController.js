@@ -2,7 +2,7 @@ const ApiError = require('../error/ApiError')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-const {User, TrainingsList, InterestList, UserAdditionalData, UserPrimaryData} = require('../models/models')
+const {User, InterestList, UserData} = require('../models/models')
 
 const generateJwt = (id, email, role) => {
     return jwt.sign(
@@ -14,24 +14,23 @@ const generateJwt = (id, email, role) => {
 
 class UserController {
     async registration(req, res, next) {
-        try{
+        try {
             const {email, password, role} = req.body
-            if (!email){
+            if (!email) {
                 return next(ApiError.notFound("Incorrect email"))
             }
-            if (!password){
+            if (!password) {
                 return next(ApiError.notFound("Incorrect password"))
             }
 
             const candidate = await User.findOne({where: {email}})
 
-            if(candidate){
+            if (candidate) {
                 return next(ApiError.notFound("User with this email address already exists"))
             }
 
             const hashPassword = await bcrypt.hash(password, 4) // hash user password 4 times
             const user = await User.create({email, role, password: hashPassword})
-            await TrainingsList.create({userId: user.id})
             await InterestList.create({userId: user.id})
 
             const token = generateJwt(user.id, user.email, user.role)
@@ -53,11 +52,11 @@ class UserController {
             }
             let comparePassword = bcrypt.compareSync(password, user.password)
 
-            if (!comparePassword){
+            if (!comparePassword) {
                 return next(ApiError.internal("Incorrect password"))
             }
             const token = generateJwt(user.id, user.email, user.role)
-            return  res.json({token})
+            return res.json({token})
 
         } catch (e) {
             next(ApiError.notFound(e.message))
@@ -100,10 +99,8 @@ class UserController {
 
             console.log(id)
 
-            await TrainingsList.destroy({where: {userId: id}})
             await InterestList.destroy({where: {userId: id}})
-            await UserAdditionalData.destroy({where: {userId: id}})
-            await UserPrimaryData.destroy({where: {userId: id}})
+            await UserData.destroy({where: {userId: id}})
 
             const user = await User.destroy(
                 {

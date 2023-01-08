@@ -1,4 +1,4 @@
-const {Training} = require("../models/models");
+const {Training, UserTraining} = require("../models/models");
 const uuid = require('uuid')
 const uniqid = require('uniqid')
 const path = require('path')
@@ -15,6 +15,8 @@ class TrainingController {
             let unique_code = uniqid.time()
             console.log(unique_code)
 
+            let coach_id = req.user.id
+
             const training = await Training.create({
                 title,
                 description,
@@ -24,6 +26,7 @@ class TrainingController {
                 duration,
                 levelId,
                 interestId,
+                coach: coach_id,
                 code: unique_code,
                 photo: filename
             })
@@ -58,14 +61,26 @@ class TrainingController {
         }
     }
 
+    async getAllStudent(req, res, next) {
+        try {
+            let {code} = req.body
+            const students = await UserTraining.findAll({where: {code}})
+            console.log(students)
+
+            return res.json(students)
+        } catch (e) {
+            next(ApiError.notFound(e.message))
+        }
+    }
+
     async getOne(req, res, next) {
         try {
             const {code} = req.params
-                const training = await Training.findOne(
-                    {
-                        where: {code},
-                    }
-                )
+            const training = await Training.findOne(
+                {
+                    where: {code},
+                }
+            )
             res.json(training)
         } catch (e) {
             next(ApiError.notFound(e.message))
@@ -78,7 +93,7 @@ class TrainingController {
             const body = req.body
             const {photo} = req.files
 
-            if (photo){
+            if (photo) {
                 let filename = uuid.v4() + ".jpg"
                 await photo.mv(path.resolve(__dirname, "..", "static", filename))
                 body.photo = filename
@@ -96,7 +111,7 @@ class TrainingController {
             const {code} = req.params
             const training = await Training.destroy(
                 {
-                where: {code}
+                    where: {code}
                 })
             return res.json(training)
         } catch (e) {

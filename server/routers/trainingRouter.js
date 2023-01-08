@@ -5,8 +5,8 @@ const checkRole = require('../middleware/checkRoleMiddleware')
 
 router.post('/', checkRole('COACH'), trainingController.create)
 router.get('/', trainingController.getAll)
-router.put('/:code', trainingController.update)
 router.get('/:code', trainingController.getOne)
-router.delete('/:code', trainingController.delete)
+router.put('/:code', checkRole('COACH'), trainingController.update)
+router.delete('/:code', checkRole('COACH'), trainingController.delete)
 
 module.exports = router

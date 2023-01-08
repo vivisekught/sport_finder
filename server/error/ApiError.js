@@ -18,6 +18,7 @@ class ApiError extends Error {
     static internal(message) {
         return new ApiError(errorsCode.internal, message)
     }
+
     static unauthorized(message) {
         return new ApiError(errorsCode.unauthorized, message)
     }
