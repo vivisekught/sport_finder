@@ -3,11 +3,20 @@ const uuid = require('uuid')
 const uniqid = require('uniqid')
 const path = require('path')
 const ApiError = require('../error/ApiError')
+const {validationResult} = require("express-validator");
 
 class TrainingController {
     async create(req, res, next) {
         try {
-            const {title, description, place, days, time, duration, levelId, interestId} = req.body
+
+            const errors = validationResult(req)
+
+            if(!errors.isEmpty()){
+                return next(ApiError.notFound(errors))
+            }
+
+
+            const {title, description, place, days, date, time, duration, levelId, interestId} = req.body
             const {photo} = req.files
             let filename = uuid.v4() + ".jpg"
             await photo.mv(path.resolve(__dirname, "..", "static", filename))
@@ -22,6 +31,7 @@ class TrainingController {
                 description,
                 place,
                 days,
+                date,
                 time,
                 duration,
                 levelId,

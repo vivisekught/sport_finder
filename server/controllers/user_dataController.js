@@ -2,10 +2,19 @@ const {UserData} = require("../models/models");
 const ApiError = require("../error/ApiError");
 const uuid = require("uuid");
 const path = require("path");
+const {validationResult} = require("express-validator");
 
 class User_dataController {
     async create(req, res, next) {
+
         try {
+
+            const errors = validationResult(req)
+
+            if(!errors.isEmpty()){
+                return next(ApiError.notFound(errors))
+            }
+
             const body = req.body
             console.log(req.body)
 

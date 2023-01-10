@@ -1,6 +1,7 @@
 const ApiError = require('../error/ApiError')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const {validationResult} = require('express-validator')
 
 const {User, UserData, UserInterest, UserTraining} = require('../models/models')
 
@@ -15,6 +16,13 @@ const generateJwt = (id, email, role) => {
 class UserController {
     async registration(req, res, next) {
         try {
+
+            const errors = validationResult(req)
+
+            if(!errors.isEmpty()){
+                return next(ApiError.notFound(errors))
+            }
+
             const {email, password, role} = req.body
             if (!email) {
                 return next(ApiError.notFound("Incorrect email"))
